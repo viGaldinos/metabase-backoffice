@@ -1,0 +1,3 @@
+# Artefato de release — gerado por release.sh, não versionado
+*.zip
+dist/
