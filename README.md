@@ -7,16 +7,29 @@ Existe porque no ambiente da GCB é fácil gerar um número que parece certo e e
 — 40 bancos conectados, schemas de produção e desenvolvimento lado a lado, mais de 2.600
 tabelas de teste do dbt e várias versões divergentes da mesma pergunta salva.
 
-## Plataforma-alvo
+## Onde roda
 
-**claude.ai / Claude Cowork, instalada na organização.** O `reference/receitas-tecnicas.md`
-pressupõe o conector Metabase da organização (`construct_native_query`, `create_question`,
-`read_resource` com URIs `metabase://…`).
+Em qualquer superfície do Claude com o **conector Metabase da GCB acoplado**:
+Claude Desktop / claude.ai e Claude Code. O `reference/receitas-tecnicas.md` usa as
+ferramentas desse conector (`construct_native_query`, `create_question`,
+`create_dashboard`, `read_resource` com URIs `metabase://…`).
 
-**Não instale esta skill no Claude Code.** Lá o MCP do Metabase expõe outro conjunto de
-ferramentas (`search`, `list`, `retrieve`, `execute`, `export`, sem nenhum `create_*`) e
-as receitas técnicas não se aplicam. Para esse caso existe a skill `dashboard-maker`,
-pessoal, que escreve no Metabase via `MetabaseClient` em Python.
+Sem o conector acoplado a skill não tem como executar nada — as receitas técnicas
+dependem dele.
+
+### Instalar
+
+- **Claude Desktop / claude.ai (pessoal):** `python3 release.py` e suba o zip em
+  *Customize > Skills > "+" > Create skill > Upload a skill*. Para atualizar, suba o zip
+  de novo por cima.
+- **Organização (Team/Enterprise):** o admin sobe o mesmo zip em
+  *Organization settings > Skills*. Fica habilitada por padrão para todo mundo.
+- **Claude Code:** aponte a pasta de skills para este repo —
+  `ln -s <caminho-do-repo> ~/.claude/skills/metabase-backoffice`. Symlink em vez de cópia
+  faz a skill acompanhar o repo sem reinstalar.
+
+Pré-requisito na organização: "Code execution and file creation" e "Skills" habilitados
+em *Organization settings > Skills*.
 
 ## Estrutura
 
@@ -45,12 +58,11 @@ Ver `GUIA-DE-PREENCHIMENTO.md` para o que falta e em que ordem atacar.
 python3 release.py
 ```
 
-Gera `metabase-backoffice.zip` na raiz (fora do Git). O `.zip` é o que o admin sobe em
-**Organization settings > Skills > "+ Add"**. O Git é a fonte canônica; o `.zip` é só o
-artefato de release.
+Gera `metabase-backoffice.zip` na raiz, com a pasta-raiz e o layout que o upload exige.
+Fica fora do Git: o repositório é a fonte canônica, o `.zip` é só artefato de release.
 
-Pré-requisitos na organização: plano Team ou Enterprise, com "Code execution and file
-creation" e "Skills" habilitados.
+Não há sync automático entre este repo e a skill instalada — depois de mudar algo aqui,
+gere o zip e suba de novo.
 
 ## Contribuir
 

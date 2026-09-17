@@ -5,10 +5,6 @@ description: "Analisar dados e criar perguntas, gráficos e dashboards no Metaba
 
 # Metabase Backoffice — GCB Investimentos
 
-> Esta skill pressupõe o **conector Metabase da organização no claude.ai / Cowork**.
-> As ferramentas citadas em `reference/receitas-tecnicas.md` existem nesse ambiente e
-> não no Claude Code, cujo MCP do Metabase é somente leitura e execução.
-
 Esta skill existe por um motivo específico: **no ambiente da GCB é fácil gerar um número
 que parece certo e está errado.** São 40 bancos conectados, schemas de produção e de
 desenvolvimento lado a lado, milhares de tabelas de teste do dbt, e várias versões

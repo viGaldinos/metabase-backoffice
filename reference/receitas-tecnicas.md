@@ -1,10 +1,7 @@
 # Receitas técnicas — MCP do Metabase
 
-Ferramentas do **conector Metabase da organização no claude.ai / Cowork**. Tudo aqui
-foi verificado por execução real no Metabase da GCB em 16/09/2026.
-
-> No Claude Code o MCP do Metabase expõe outro conjunto (`search`, `list`, `retrieve`,
-> `execute`, `export`) e **não tem nenhum `create_*`** — nada desta página se aplica lá.
+Ferramentas do conector Metabase. Tudo aqui foi verificado por execução real no
+Metabase da GCB em 16/09/2026.
 
 ## Índice
 - Sequência de criação
